@@ -1,0 +1,88 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-label >Login!</ion-label>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="welcome"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div class="container-fluid" id="background-image-container" class="container-fluid">
+  <ion-img id="background-image" src="assets/img/clearwater-background.gif"></ion-img> 
+</div>
+
+
+
+  <ion-grid>
+    <form>
+      <ion-col>
+      </ion-col> 
+      <ion-col>
+        <ion-row>
+
+        </ion-row>
+        <ion-row>
+          <ion-item class="loginFields">
+            <ion-input placeholder="Username" shape="round" fill="solid"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item class="loginFields">
+            <ion-input placeholder="Password" shape="round" fill="outline"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          
+          <ion-item>
+            <ion-label>Remember me</ion-label>
+            <ion-radio slot="start" value="false" placeholder="Password"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-button type="submit">Submit</ion-button>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-button routerLink="passwordReset" routerLinkActive="active" id="passwordReset" fill="outline" >Forgot Password?</ion-button>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+      </ion-col> 
+  </form>
+</ion-grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---
+  <ion-content id="loginForm">
+  <form>
+    <ion-item class="loginFields">
+      <ion-input placeholder="Username" shape="round" fill="outline"></ion-input>
+    </ion-item>
+    <ion-item class="loginFields">
+      <ion-input placeholder="Password" shape="round" fill="outline"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Remember me</ion-label>
+      <ion-radio slot="start" value="Remember me"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-button type="submit">Submit</ion-button>
+    </ion-item>
+  </form>
+</ion-content>
+  --->
