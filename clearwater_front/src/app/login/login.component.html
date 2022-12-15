@@ -24,12 +24,12 @@
         </ion-row>
         <ion-row>
           <ion-item class="loginFields">
-            <ion-input placeholder="Username" shape="round" fill="solid"></ion-input>
+            <ion-input placeholder="Username" id="username" shape="round" fill="solid"></ion-input>
           </ion-item>
         </ion-row>
         <ion-row>
           <ion-item class="loginFields">
-            <ion-input placeholder="Password" shape="round" fill="outline"></ion-input>
+            <ion-input placeholder="Password" id="password" shape="round" fill="outline"></ion-input>
           </ion-item>
         </ion-row>
         <ion-row>
@@ -39,12 +39,12 @@
             <ion-radio slot="start" value="false" placeholder="Password"></ion-radio>
           </ion-item>
           <ion-item>
-            <ion-button type="submit">Submit</ion-button>
+            <ion-button (click)="login()">Submit</ion-button>
           </ion-item>
         </ion-row>
         <ion-row>
           <ion-item>
-            <ion-button routerLink="passwordReset" routerLinkActive="active" id="passwordReset" fill="outline" >Forgot Password?</ion-button>
+            <ion-button routerLink="passwordReset" routerLinkActive="active" id="passwordReset" fill="outline"  >Forgot Password?</ion-button>
           </ion-item>
         </ion-row>
       </ion-col>
