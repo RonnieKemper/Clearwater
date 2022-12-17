@@ -1,0 +1,48 @@
+label each feature with its corresponding filename.
+using ionic, write a user profile page for an angular application that has the following features:
+	a navigation header at the bottom of the page with 4 buttons:
+		Home, schedule, promotions, refer.
+		each button should route the user to a corresponding page
+
+the home page should have a header at the top with a dropdown menu button in the right corner
+the dropdown menu should have links to the following pages:
+	profile, schedule activity, locations, notifications, education, payment history, preferences, account setting, connect with us.
+
+each page should utelize flexbox in all elements to make them fit the screen
+
+there should be a flexible image below the header.
+in the body of the page there should be 2 images:
+	promotions, schedule.
+
+for the scheduling page, write a javascript function as an express endpoint named "init_appointments" that will write an sql query to generate a table named Available_appointments with the following features: the table should generate a column for every day of the year, this column should be titled with the date. 
+add a row to the column, start at 7:00am, and increment every 15 minutes, adding the increment as a row to the column until 8:00pm.
+
+on the scheduling page, write a nav menu named calender using ionic with 9 visible buttons in a horizontal linked list with a length of 90 buttons.
+starting at the second button, put the next 89 buttons a class named "Available_appointments"
+starting at the second button give each button an id, starting with the current date, each following button should increment it's id to the next day, for 90 days. 
+the first and last buttons should be anchored, the left most button should have an left arrow icon, and should slide all buttons in the "Available_appointments" class left or right in a linked list, 
+and the linked list should be the length of 90 days ahead, 
+each button should be the next day.
+
+ 
+write an express get endpoint named "fetch available_days", this method should have the following features:
+	use a variable named "todays date" with a value of todays date.
+	from Available_appointments table, select all columns whose date is today, and everyday after, for 90 days. 
+	the response should be a json array named "available_columns" containing the retrieved column names.
+
+write an angular javascript function named "fetch_available_days" it should have the following features:
+	http request to "fetch_available_days" express endpoint.
+	for each button in "Available_appointments", set it's value to the corresponding date in "available_columns"
+
+
+on the scheduling page calender write an onclick method calling an angular javascript function named "fetch_available_times" to utelize an http get request to call "fetch_available_times" express endpoint. 
+the fetch_available_times should be similar to this:
+for each button that has an id of a date 
+for document.getelementsbyclass("Available_appointments"){
+	let available_columns = select * from Available_appointments where id = document.getelementbyid([i])
+	for available columns {
+		document.getelementsbyid(available_columns).value()
+	}
+	
+}
+
