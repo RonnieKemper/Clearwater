@@ -1,0 +1,14 @@
+Write a fullstack application
+
+the front end should be written in angular, ionic, fully cross compatible.
+the front end should include: 
+a welcome page, which is routed to a signup form and a login form.
+the signup form should request the following variables which should be added to a table in the backend database table named accounts in database clearwater via an http request to an api endpoint:
+first name, last name, address, zip, phone number, email, password.
+ 
+
+the back end should be written in express, sequelize, mysql.
+the backend should include:
+
+the front end will make frequent requests to the backend api endpoints.
+all requests made across the network should be HTTPS

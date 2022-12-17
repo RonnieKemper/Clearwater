@@ -6,6 +6,7 @@ const mysql = require('mysql2');
 const { findAll } = require('sequelize/lib/model');
 var passport = require('../services/passport'); // <--- Add this code
 /* GET home page. */
+
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
@@ -37,6 +38,11 @@ router.get('/login', function (req, res, next) {
 });
 
 router.post('/login', function (req, res, next) {
+  //console.log(req);
+  //console.log(req.body.g);
+  //console.log(req.body.creds);
+  console.log(req.body.username);
+  console.log(req.body.password);
   models.users
     .findOne({
       where: {
@@ -57,8 +63,10 @@ router.post('/login', function (req, res, next) {
         if (passwordMatch) {
           let token = authService.signUser(user);
           res.cookie('jwt', token);
-          res.send('Login successful');
-          //res.redirect('profile');
+          console.log(token);
+          res.send({Login: 'success'});
+          
+          //res.send(router.get('/profile'))
         } else {
           console.log('Wrong password');
           res.send('Wrong password');

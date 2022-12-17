@@ -12,20 +12,24 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
+  
   getData(){
-    return this.http.get('http://localhost:3000/users/profile')
+    return this.http.get('https://localhost:3000/users/profile')
   }
   login(){
     console.log('login function initiated');
     const headers = new HttpHeaders({
       'myHeader': 'clearwater',
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json', //application/json //text/plain
       'Authorization': 'my-auth-token',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+      'Access-Control-Allow-Origin': 'http://localhost:4200, http://localhost:3000',
+      
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+      observe: 'body', responseType: 'json'
     });
     console.log('http request initiated');
     var username = (<HTMLIonInputElement>document.getElementById('username')).value;
@@ -35,11 +39,20 @@ export class LoginComponent implements OnInit {
     //var zip = (<HTMLInputElement>document.getElementById('zip')).value;
     //var email = (<HTMLIonInputElement>document.getElementById('email')).value;
     var password = (<HTMLIonInputElement>document.getElementById('password')).value;
+    
     var creds = [password, username];
     //alert(creds);
-
-    this.http.post<{name: string}>('http://localhost:3000/users/login', creds, {headers: headers}).subscribe((res) => {
-      console.log('help');
+    //[key: string]: Product //login: string
+    this.http.post<{[login: string]: any}>('http://localhost:3000/users/login', {username: username, password: password, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
+    console.log(res);  
+    //var data = JSON.parse(res);
+    console.log(res.Login);
+    //console.log(JSON.parse(JSON.stringify(res)))
+    //let data = JSON.parse(JSON.stringify(res))
+    //console.log(data.Login)
+    if (res.Login == 'success') {
+      window.location.href = '/profile';
+    }
     });
   }
   ngOnInit() {}

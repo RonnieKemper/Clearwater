@@ -1,0 +1,88 @@
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class MyAppComponent implements OnInit {
+  constructor(private http: HttpClient) {}
+
+  signUp(creds: any) {
+    return this.http.post<{name: string}>('localhost:3000/users/signup', creds);
+  }
+
+  authenticate() {
+    const cookie = document.cookie;
+    const authInfo = this.parseCookie(cookie);
+    return this.http.post<{authenticated: boolean}>('localhost:3000/users/authenticate', authInfo);
+  }
+
+  parseCookie(cookie: string) {
+    // Parse the cookie string and return the authentication information
+  }
+}
+
+
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  constructor(private http: HttpClient) {}
+
+  signUp(creds: any) {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+
+    return this.http.post<{name: string}>('localhost:3000/users/signup', creds, {headers: headers});
+  }
+
+  authenticate(creds: any) {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+
+    return this.http.post<{name: string}>('localhost:3000/users/authenticate', creds, {headers: headers});
+  }
+}
+
+
+
+
+
+how to execute express back end code from angular http requests 
+
+
+
+ng generate service RequestInterceptor
+import { Injectable } from '@angular/core';
+import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
+
+@Injectable()
+export class LoggingInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    console.log(`URL: ${req.url}`);
+    console.log(`Method: ${req.method}`);
+
+    return next.handle(req);
+  }
+}
+
+import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoggingInterceptor } from './logging-interceptor.service';
+
+@NgModule({
+  imports: [
+    HttpClientModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }
+  ]
+})
+export class AppModule { }
+
+
+
+
+
