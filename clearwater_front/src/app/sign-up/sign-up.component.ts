@@ -16,39 +16,6 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {}
 
-  createProfile(){
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   'Authorization': 'my-auth-token',
-    //   'Access-Control-Allow-Origin': 'http://localhost:4200',
-    //   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
-    // });
-    
-    console.log('test');
-    
-    const headers = new HttpHeaders({
-      'myHeader': 'proacademy',
-      'Content-Type': 'application/json',
-      'Authorization': 'my-auth-token',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
-    });
-    var username = (<HTMLIonInputElement>document.getElementById('username')).value;
-    var Firstname = (<HTMLInputElement>document.getElementById('Firstname')).value;
-    var Lastname = (<HTMLInputElement>document.getElementById('Lastname')).value;
-    var Email = (<HTMLInputElement>document.getElementById('Email')).value;
-    //var zip = (<HTMLInputElement>document.getElementById('zip')).value;
-    //var email = (<HTMLIonInputElement>document.getElementById('email')).value;
-    var password = (<HTMLIonInputElement>document.getElementById('password')).value;
-    var creds = [Firstname, Lastname, Email, password, username];
-    //alert(creds);
-
-    // this.http.get('localhost:3000/users/login').subscribe((res) => {console.log(res)})
-    this.http.post<{name: string}>('http://localhost:3000/users/signup', creds, {headers: headers})  //products,
-      .subscribe((res) => {
-        console.log('help');
-      });
-    }
 
   // createProfile(){
   //   this.http.get('localhost:3000/users/signup')
@@ -56,7 +23,47 @@ export class SignUpComponent implements OnInit {
   //     // Handle the response data
   //     alert(data)
   // });
-  // }
+
+  createProfile(){
+    console.log('create-profile function initiated');
+    const headers = new HttpHeaders({
+      'myHeader': 'clearwater',
+      'Content-Type': 'application/json', //application/json //text/plain
+      'Authorization': 'my-auth-token',
+      'Access-Control-Allow-Origin': 'http://localhost:4200, http://localhost:3000',
+      
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+      observe: 'body', responseType: 'json'
+    });
+    console.log('http request initiated');
+    var firstname = (<HTMLInputElement>document.getElementById('Firstname')).value;
+    var lastname = (<HTMLInputElement>document.getElementById('Lastname')).value;
+    var username = (<HTMLIonInputElement>document.getElementById('Username')).value;
+    var email = (<HTMLInputElement>document.getElementById('Email')).value;
+    var phone = (<HTMLInputElement>document.getElementById('Phone')).value;
+    var password = (<HTMLIonInputElement>document.getElementById('Password')).value;
+    var zip = (<HTMLInputElement>document.getElementById('Zip')).value;
+    //var creds = [password, username];
+    
+    //alert(creds);
+    //[key: string]: Product //login: string
+    this.http.post<{[account_creation: string]: any}>('http://localhost:3000/users/signup', {firstname: firstname, lastname: lastname, username: username, email: email, phone: phone, password: password, zip: zip, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
+    console.log(res);  
+    //var data = JSON.parse(res);
+    console.log(res.account_creation);
+    //console.log(JSON.parse(JSON.stringify(res)))
+    //let data = JSON.parse(JSON.stringify(res))
+    //console.log(data.Login)
+    if (res.account_creation == 'success') {
+      window.location.href = '/profile';
+    }
+    if (res.message == '401') {
+      console.log(res.message)
+    }
+    });
+  }
+
+
   }
 
 

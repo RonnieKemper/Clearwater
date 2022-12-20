@@ -1,0 +1,8 @@
+certbot "let's encrypt" CA ssl Cert autogen and install
+configure sslredirect and force https, ports configuration on production server.
+possible reverse proxy
+configure domain name
+gmail api
+	email confirmation
+stripe api
+	transaction processing

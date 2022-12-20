@@ -20,6 +20,10 @@
   </ion-col>
 </ion-grid>
 
+<!-- <div class="container-fluid" id="background-image-container" class="container-fluid">
+  <ion-img id="background-image" src="assets/img/clearwater-background.gif"></ion-img> 
+</div> -->
+
   <ion-grid>
     <form>
       <ion-col>
@@ -28,31 +32,46 @@
         <ion-row>
 
         </ion-row>
+
+
         <ion-row>
           <ion-item class="loginFields">
-            <ion-input placeholder="FIRST NAME" shape="round" fill="solid"></ion-input>
+            <ion-input placeholder="First name" id="Firstname" shape="round" fill="solid"></ion-input>
           </ion-item>
         </ion-row>
         <ion-row>
           <ion-item class="loginFields">
-            <ion-input placeholder="LASTNAME" shape="round" fill="outline"></ion-input>
+            <ion-input placeholder="Last name" id="Lastname" shape="round" fill="outline"></ion-input>
           </ion-item>
         </ion-row>
         <ion-row>
           <ion-item class="loginFields">
-            <ion-input placeholder="EMAIL" shape="round" fill="outline"></ion-input>
+            <ion-input placeholder="Username" id="Username" shape="round" fill="solid"></ion-input>
           </ion-item>
         </ion-row>
         <ion-row>
           <ion-item class="loginFields">
-            <ion-input placeholder="ZIP" shape="round" fill="outline"></ion-input>
+            <ion-input placeholder="Password" id="Password" shape="round" fill="outline"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item class="loginFields">
+            <ion-input placeholder="Email" id="Email" shape="round" fill="outline"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item class="loginFields">
+            <ion-input placeholder="Phone" id="Phone" shape="round" fill="outline"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item class="loginFields">
+            <ion-input placeholder="Zip" id="Zip" shape="round" fill="outline"></ion-input>
           </ion-item>
         </ion-row>
         <ion-row>
           <ion-item>
-            <ion-button routerLink="profile" routerLinkActive="active" id="p1submit" shape="round" fill="solid" type="submit" (click)="createProfile()"> next</ion-button>
-            
-    
+            <ion-button  id="p1submit" shape="round" fill="solid" (click)="createProfile()"> next</ion-button>
           </ion-item>
         </ion-row>
       </ion-col>
