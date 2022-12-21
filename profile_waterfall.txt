@@ -8,7 +8,7 @@ the home page should have a header at the top with a dropdown menu button in the
 the dropdown menu should have links to the following pages:
 	profile, schedule activity, locations, notifications, education, payment history, preferences, account setting, connect with us.
 
-each page should utelize flexbox in all elements to make them fit the screen
+each page should utilize flexbox in all elements to make them fit the screen
 
 there should be a flexible image below the header.
 in the body of the page there should be 2 images:
