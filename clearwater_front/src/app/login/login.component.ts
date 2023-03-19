@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
     //console.log(data.Login)
     if (res.Login == 'success') {
       window.location.href = '/profile';
+      
     }
     });
   }
