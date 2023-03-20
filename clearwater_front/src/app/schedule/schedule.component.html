@@ -7,7 +7,9 @@
 </ion-header>
 
 <ion-content>
-  <!-- content goes here -->
+  <ion-calendar [mode]="calendar.mode" [currentDate]="calendar.currentDate" [dateFormatter]="calendar.dateFormatter"></ion-calendar>
+  <ion-button (click)="scheduleAppointment()">Schedule Appointment</ion-button>
+
 </ion-content>
 
 <ion-footer>

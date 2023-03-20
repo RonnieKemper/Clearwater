@@ -17,6 +17,8 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { ReferComponent } from './refer/refer.component';
 
+
+
 @NgModule({
   declarations: [AppComponent, WelcomeComponent, LoginComponent, SignUpComponent, CreateProfileComponent, EmailConfirmationComponent, ScheduleComponent, PromotionsComponent, ReferComponent, HomeComponent],
   imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
