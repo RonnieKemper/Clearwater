@@ -51,10 +51,10 @@ export class ScheduleComponent implements OnInit {
       endDate: new Date(new Date().getTime() + 60 * 60 * 1000),
       firstReminderMinutes: 15
     };
-    this.calendar.createEvent(options.title, options.location, options.notes, options.startDate, options.endDate).then(
-      (msg) => { console.log(msg); },
-      (err) => { console.log(err); }
-    );
+    // this.calendar.createEvent(options.title, options.location, options.notes, options.startDate, options.endDate).then(
+    //   (msg) => { console.log(msg); },
+    //   (err) => { console.log(err); }
+    // );
   }
   
   
