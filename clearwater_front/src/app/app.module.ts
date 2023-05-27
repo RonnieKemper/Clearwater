@@ -12,9 +12,15 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { CreateProfileComponent } from './profile/create-profile.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { PromotionsComponent } from './promotions/promotions.component';
+import { ReferComponent } from './refer/refer.component';
+
+
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent, LoginComponent, SignUpComponent, CreateProfileComponent, EmailConfirmationComponent],
+  declarations: [AppComponent, WelcomeComponent, LoginComponent, SignUpComponent, CreateProfileComponent, EmailConfirmationComponent, ScheduleComponent, PromotionsComponent, ReferComponent, HomeComponent],
   imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
