@@ -30,8 +30,8 @@ function installPM2() {
 // transfers local project to the remote server
 function transferProjectToRemote(failed, successful) {
   return ssh.putDirectory(
-    '../clearwater',
-    '/home/ubuntu/clearwater',
+    '../Clearwater',
+    '/home/ubuntu/Clearwater',
     {
       recursive: true,
       concurrency: 1,
@@ -57,7 +57,7 @@ function transferProjectToRemote(failed, successful) {
 // creates a temporary folder on the remote server
 function createRemoteTempFolder() {
   return ssh.execCommand(
-    'rm -rf clearwater && mkdir clearwater', {
+    'rm -rf Clearwater && mkdir Clearwater', {
       cwd: '/home/ubuntu'
   });
 }
@@ -73,7 +73,7 @@ function stopRemoteServices() {
 // updates the project source on the server
 function updateRemoteApp() {
   return ssh.execCommand(
-    'mkdir clearwater && cp -r clearwater/* clearwater/ && rm -rf clearwater', {
+    'mkdir Clearwater && cp -r Clearwater/* Clearwater/ && rm -rf Clearwater', {
       cwd: '/home/ubuntu'
   });
 }
@@ -81,7 +81,7 @@ function updateRemoteApp() {
 // restart mongodb and node services on the remote server
 function restartRemoteServices() {
   return ssh.execCommand(
-    'cd clearwater && pm2 start app.js', { // sudo service mongod start &&
+    'cd Clearwater && pm2 start app.js', { // sudo service mongod start &&
       cwd: '/home/ubuntu'
   });
 }
@@ -93,7 +93,7 @@ function sshConnect() {
   ssh
     .connect({
       // TODO: ADD YOUR IP ADDRESS BELOW (e.g. '12.34.5.67')
-      host: 'ec2-54-164-62-206.compute-1.amazonaws.com',
+      host: 'ec2-3-86-230-37.compute-1.amazonaws.com',
       username: 'ubuntu',
       privateKey: './SSH_keys/clearwater.pem'
     })
