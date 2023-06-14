@@ -47,7 +47,10 @@ export class SignUpComponent implements OnInit {
     
     //alert(creds);
     //[key: string]: Product //login: string
-    this.http.post<{[account_creation: string]: any}>('http://localhost:3000/users/signup', {firstname: firstname, lastname: lastname, username: username, email: email, phone: phone, password: password, zip: zip, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
+
+    //production: http://ec2-3-86-230-37.compute-1.amazonaws.com/users/signup
+    //development: http://localhost:3000/users/signup
+    this.http.post<{[account_creation: string]: any}>('http://ec2-3-86-230-37.compute-1.amazonaws.com/users/signup', {firstname: firstname, lastname: lastname, username: username, email: email, phone: phone, password: password, zip: zip, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
     console.log(res);  
     //var data = JSON.parse(res);
     console.log(res.account_creation);
