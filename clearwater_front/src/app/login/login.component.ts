@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient) { }
   
   getData(){
-    return this.http.get('https://localhost:3000/users/profile')
+    return this.http.get('http://ec2-3-86-230-37.compute-1.amazonaws.com/users/profile') //prod: http://ec2-3-86-230-37.compute-1.amazonaws.com/users/profile, dev:https://localhost:3000/users/profile
   }
   login(){
     console.log('login function initiated');
