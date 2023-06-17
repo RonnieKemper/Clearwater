@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
     
     var creds = [password, username];
     //alert(creds);
-    //[key: string]: Product //login: string
-    this.http.post<{[login: string]: any}>('http://localhost:3000/users/login', {username: username, password: password, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
+    //[key: string]: Product //login: string //dev: http://localhost:3000/users/login prod: http://ec2-3-86-230-37.compute-1.amazonaws.com/users/login
+    this.http.post<{[login: string]: any}>('http://ec2-3-86-230-37.compute-1.amazonaws.com/users/login', {username: username, password: password, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
     console.log(res);  
     //var data = JSON.parse(res);
     console.log(res.Login);
