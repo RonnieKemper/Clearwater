@@ -1,0 +1,199 @@
+
+
+#container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  
+  #background-image-container{
+    
+    display: flex;
+    height: 50%;
+    width: 100%;
+  }
+  
+  #background-image{
+    display: flex;
+    
+    width: 100%
+  }
+  
+  
+  #welcome-form{
+    height: 50%;
+  }
+  #welcome-form-text{
+  
+    display: flex;
+    justify-content: center;
+    font-family: consolas;
+  }
+  
+  #welcome-form-text2{
+    display: flex;
+    justify-content: center;
+    font-family: consolas;
+    margin:32px;
+  }
+  
+  #new-customer {
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+  }
+  #current-customer {
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+    
+  }
+  .calendar-header-text {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .calendar-month {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .calendar-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  
+  .calendar-nav-button {
+    font-size: 1.5rem;
+    color: var(--ion-color-primary);
+  }
+  
+  .calendar-dates {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .calendar-day-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  
+  .day-label {
+    font-size: 0.75rem;
+    color: var(--ion-color-medium);
+  }
+  
+  .day-number {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  .selected {
+    background-color: lightblue;  /* Highlight color for selected day */
+    color: white;
+  }
+  
+  .time-table {
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .time-table table {
+    width: 100%;
+    border-collapse: collapse;
+    justify-content: center;
+  }
+  
+  .time-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    justify-content: center;
+  }
+  
+  .time-table td button {
+    margin-left: 10px;
+    justify-content: center;
+  }
+  .StyledTimeSlotPickerWrapper {
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .StyledTimeSlotPickerHeader {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+  
+  .time-slot-header button {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .time-slot-header button.active {
+    background-color: rgb(51, 158, 194);
+  }
+  #ion-grid{
+    justify-content: center;
+    align-content: center;
+  }
+  ion-item {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+  
+  ion-radio {
+    --color: #3c545a;
+  }
+  /* Center the table on the page */
+.time-table {
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px; /* Padding for better spacing */
+    text-align: center;
+    max-width: 800px; /* Optional: control the width of the table */
+  }
+  
+  /* Make sure the ion-grid itself is centered */
+  .centered-grid {
+    display: grid;
+    justify-content: center; /* Center the grid horizontally */
+    align-items: center; /* Center the grid vertically (if the grid height is defined) */
+    width: 100%;
+  }
+  
+  /* Define the layout of the grid columns */
+  ion-grid {
+    display: grid;
+    
+    justify-items: center; /* Center items horizontally in each column */
+  }
+  
+  ion-col {
+    display: flex;
+    justify-content: center;
+  }
+  
+  ion-button {
+    width: 100%; /* Make the buttons fill their parent column */
+  }
+  
+  /* Add this to your component's SCSS or CSS file */
+
+
+  
+  
+  

@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Schedule
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="calendar-header-text">Select Your Date</ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-title size="small" class="calendar-month">
+          <strong>{{ currentMonthName }} {{ currentYear }}</strong>
+        </ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <div class="calendar-wrapper">
+          <ion-button fill="clear" class="calendar-nav-button" (click)="goPrevDay()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
+  
+          <div class="calendar-dates-container">
+            <div class="calendar-dates">
+              <ion-button *ngFor="let day of getVisibleDays()" fill="clear" 
+                          [class.selected]="isDaySelected(day)" (click)="selectDay(day)">
+                <div class="day-label">{{ day.dayName }}</div>
+                <div class="day-number"><strong>{{ day.day }}</strong></div>
+              </ion-button>
+            </div>
+          </div>
+  
+          <ion-button fill="clear" class="calendar-nav-button" (click)="goNextDay()">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-toolbar>
+    </ion-header>
+  
+
+        <div *ngIf="selectedDay" class="time-table">
+          <h3>Available Times for {{ selectedDay.dayName }} {{ selectedDay.day }}</h3>
+      
+          <ion-grid id="ion-grid">
+            <ion-row *ngFor="let row of getRows(times)" class="time-row">
+              <ion-col *ngFor="let time of row" size="2">
+                <ion-button fill="solid" color="primary" (click)="bookTime(time)">
+                  {{ time }}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+  
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button routerLink="/profile">Home</ion-button>
+        <ion-button routerLink="/schedule">Schedule</ion-button>
+        <ion-button routerLink="/promotions">Promotions</ion-button>
+        <ion-button routerLink="/refer">Refer</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+  

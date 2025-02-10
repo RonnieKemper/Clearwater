@@ -1,0 +1,234 @@
+current objectives:
+Server version: 5.7.42-0ubuntu0.18.04.1 (Ubuntu)
+8.0.27 (windows)
+windows:
+mysqladmin version -u root -p
+linux:
+sudo mysql -u root
+sudo mysql -u root -p clearwater < clearwater_users.sql
+sudo mysql -u root < clearwater_users.sql
+
+sudo systemctl stop mysql    # Stop the MySQL service if it's running
+sudo apt-get remove --purge mysql-server mysql-client mysql-common
+sudo apt-get autoremove
+sudo apt-get autoclean
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.27-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.27-1_all.deb
+sudo apt-get update
+sudo apt-get install mysql-server=8.0.27-1ubuntu18.04
+mysql --version
+
+
+
+
+
+
+
+export dev database to production environment and verify connection in production software
+cross analyze production functions with dev software and correct the 500/204 error 
+continue configuring the admin and customer apps to work in parralel.
+continue development of database
+deploy and configure dns
+
+ALTER TABLE adminusers
+DROP COLUMN id;
+ALTER TABLE adminusers
+ADD zip varchar(255);
+rename clearwater to main:
+ALTER DATABASE Clearwater MODIFY NAME = main; doesnt work
+drop database clearwater;
+create database main;
+use main;
+rename users table to cwCustomers: 
+ALTER TABLE users RENAME TO cwCustomers;
+CREATE TABLE IF NOT EXISTS `cwCustomers` (
+	`UserId` int(11) NOT NULL auto_increment primary key,   
+	`id` int DEFAULT NULL,
+  	`FirstName` varchar(250) NOT NULL default '', 
+	`LastName` varchar(250)  NOT NULL default '',     
+	`Username`  varchar(250)  NOT NULL UNIQUE,     
+	`Password` varchar(250) NOT NULL,    
+	`Email`  varchar(250)  NOT NULL UNIQUE,
+  	`phonenumber` varchar(250) NOT NULL UNIQUE,
+	`Admin` boolean not null default 0,    
+	`createdAt` DATE NOT NULL,
+	`updatedAt` DATE NOT NULL
+); 
+
+
+create admin-user table
+CREATE TABLE IF NOT EXISTS `AdminUsers` (
+	`UserId` int(11) NOT NULL auto_increment primary key,   
+	`id` int DEFAULT NULL,
+  	`FirstName` varchar(250) NOT NULL default '', 
+	`LastName` varchar(250)  NOT NULL default '',     
+	`Username`  varchar(250)  NOT NULL UNIQUE,     
+	`Password` varchar(250) NOT NULL,    
+	`Email`  varchar(250)  NOT NULL UNIQUE,
+  	`phonenumber` varchar(250) NOT NULL UNIQUE,
+	`Admin` boolean not null default 0,    
+	`createdAt` DATE NOT NULL,
+	`updatedAt` DATE NOT NULL
+); 
+
+create available-times table
+drop table calendar;
+CREATE TABLE calendar (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    date DATE,
+    day_of_month INT,
+    month INT,
+    05am varchar(250),
+    06am varchar(250),
+    07am varchar(250),
+    08am varchar(250),
+    09am varchar(250),
+    10am varchar(250),
+    11am varchar(250),
+    12pm varchar(250),
+    01pm varchar(250),
+    02pm varchar(250),
+    03pm varchar(250),
+    04pm varchar(250),
+    05pm varchar(250),
+    06pm varchar(250),
+    07pm varchar(250),
+    08pm varchar(250),
+    09pm varchar(250),
+    10pm varchar(250)
+);
+INSERT INTO calendar (date, day_of_month, month) 
+SELECT 
+    date,
+    DAYOFMONTH(date) AS day_of_month,
+    MONTH(date) AS month
+FROM
+    (
+        SELECT 
+            DATE(DATE_ADD(CURDATE(), INTERVAL num DAY)) AS date
+        FROM
+            (
+                SELECT 
+                    t0.i + t1.i * 10 + t2.i * 100 + t3.i * 1000 AS num
+                FROM
+                    (SELECT 0 AS i UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) AS t0,
+                    (SELECT 0 AS i UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) AS t1,
+                    (SELECT 0 AS i UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) AS t2,
+                    (SELECT 0 AS i UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) AS t3
+            ) AS num
+        WHERE
+            num <= DATEDIFF(CURDATE(), '2023-01-01')
+    ) AS dates;
+UPDATE calendar
+set 05am = 1,
+    06am = 1,
+    07am = 1,
+    08am = 1,
+    09am = 1,
+    10am = 1,
+    11am = 1,
+    12pm = 1,
+    01pm = 1,
+    02pm = 1,
+    03pm = 1,
+    04pm = 1,
+    05pm = 1,
+    06pm = 1,
+    07pm = 1,
+    08pm = 1,
+    09pm = 1,
+    10pm = 1;
+
+
+select * from calendar
+
+
+select 05am from calendar where date = '2023-07-08' and 05am = 1
+UPDATE calendar
+SET `05am` = 0
+WHERE date = '2023-07-08' AND `05am` = 1;
+select 05am from calendar where date = '2023-07-08' and 05am = 0
+
+
+DELETE FROM calendar WHERE date < CURDATE();
+DELETE FROM calendar WHERE day < CURDATE();
+select FROM calendar WHERE day < CURDATE();
+select * from calendar
+select * from calendar where date = '2023-06-27'
+select 06am from calendar where date = '2023-06-27' 
+select 05am, 06am, 07am, 08am, 09am, 10am, 11am, 12pm, 01pm, 02pm, 03pm, 04pm, 05pm, 06pm, 07pm, 08pm, 09pm, 10pm from calendar where date = "2023-06-27"
+drop table calendar;
+sequelize init --force
+sequelize-auto -h localhost -d main -u root -x Password1! -o "./models" -t category
+sequelize model:generate --name adminusers --attributes Id:integer,FirstName:string,LastName:string,Email:string,Username:string,phonenumber:string,Password:string,Admin:boolean --force
+sequelize model:generate --name cwCustomers --attributes Id:integer,FirstName:string,LastName:string,Email:string,Username:string,phonenumber:string,Password:string,Admin:boolean --force
+sequelize model:generate --name calender --attributes Id:integer,date:string,day_of_month:integer,month:integer,05am:string, 06am:string, 07am:string, 08am:string, 09am:string, 10am:string, 11am:string, 12pm:string, 01pm:string, 02pm:string, 03pm:string, 04pm:string, 05pm:string, 06pm:string, 07pm:string, 08pm:string, 09pm:string, 10pm:string --force
+makemigration --name adminusers
+makemigration db:create
+sequelize db:migrate
+
+'use strict';
+const {
+  Model
+} = require('sequelize');
+const dataTypes = require('sequelize/lib/data-types');
+module.exports = (sequelize, DataTypes) => {
+  // class adminusers extends Model {
+  //   /**
+  //    * Helper method for defining associations.
+  //    * This method is not a part of Sequelize lifecycle.
+  //    * The `models/index` file will call this method automatically.
+  //    */
+  //   static associate(models) {
+  //     // define association here
+  //   }
+  // }
+  // adminusers.init({
+  //   Id: DataTypes.INTEGER,
+  //   FirstName: DataTypes.STRING,
+  //   LastName: DataTypes.STRING,
+  //   Email: DataTypes.STRING,
+  //   Username: DataTypes.STRING,
+  //   Password: DataTypes.STRING,
+  //   Admin: DataTypes.BOOLEAN
+  // }, {
+  //   sequelize,
+  //   modelName: 'adminusers',
+  // });
+  // return adminusers;
+  var adminusers = sequelize.define(
+    'adminusers',
+    {
+      UserId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      FirstName: DataTypes.STRING,
+      LastName: DataTypes.STRING,
+      Email: {
+        type: DataTypes.STRING,
+        unique: true
+      },
+      Username: {
+        type: DataTypes.STRING,
+        unique: true
+      },
+      phonenumber: DataTypes.STRING,
+      Password: DataTypes.STRING,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
+      Admin: DataTypes.BOOLEAN
+    },
+    {}
+  );
+
+  return adminusers;
+  };
+//};
+
+create jobs table
+CREATE TABLE IF NOT EXISTS 'Jobs' (
+	`JobId` int(11) NOT NULL auto_increment primary key,
+);

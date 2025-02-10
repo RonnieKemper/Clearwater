@@ -2,6 +2,7 @@ var express = require('express');
 var models = require('../models'); //<--- Add models
 var authService = require('../services/auth'); //<--- Add authentication service
 var router = express.Router();
+const { body, validationResult } = require('express-validator');
 const mysql = require('mysql2');
 const { findAll } = require('sequelize/lib/model');
 var passport = require('../services/passport'); // <--- Add this code
@@ -11,25 +12,42 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+
 router.post('/signup', function (req, res, next) {
-  models.users
+  models.cwCustomers
     .findOrCreate({
       where: {
         Username: req.body.username
       },
       defaults: {
+
         FirstName: req.body.firstName,
         LastName: req.body.lastName,
+        Username: req.body.Username,
         Email: req.body.email,
-        Password: authService.hashPassword(req.body.password) //<--- Change to this code here
+        Password: authService.hashPassword(req.body.password), //<--- Change to this code here
+        phonenumber: req.body.phonenumber,
+        zip: req.body.zip
       }
     })
-    .spread(function (result, created) {
-      if (created) {
-        res.send({account_creation: 'success'});
-      } else {
-        res.send('This user already exists');
+    .then(function (result, created) {
+      //console.log(result)
+      console.log(result[1])
+      //console.log(created)
+      // if (result.cwCustomers.isNewRecord == 'True') {
+      //   res.json({account_creation: 'success'});
+      // }
+      if (result[1] == false) {
+        res.send({account_creation: 'failure'});
+        
       }
+      if (result[1] == true) {
+        //res.setHeader('Content-Type', 'application/json');
+        //res.send(JSON.stringify(actorsFound));
+        //res.send('User successfully created');
+        res.send({account_creation: 'success'});
+      } 
+
     });
 });
 
@@ -43,7 +61,7 @@ router.post('/login', function (req, res, next) {
   //console.log(req.body.creds);
   console.log(req.body.username);
   console.log(req.body.password);
-  models.users
+  models.cwCustomers
     .findOne({
       where: {
         Username: req.body.username,

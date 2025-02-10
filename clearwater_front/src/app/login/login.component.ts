@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient) { }
   
   getData(){
-    return this.http.get('http://ec2-3-86-230-37.compute-1.amazonaws.com/users/profile') //prod: http://ec2-3-86-230-37.compute-1.amazonaws.com/users/profile, dev:https://localhost:3000/users/profile
+    return this.http.get('https://localhost:3000/users/profile') //prod: http://ec2-3-86-230-37.compute-1.amazonaws.com/users/profile, dev:https://localhost:3000/users/profile
   }
   login(){
     console.log('login function initiated');
@@ -33,17 +33,17 @@ export class LoginComponent implements OnInit {
     });
     console.log('http request initiated');
     var username = (<HTMLIonInputElement>document.getElementById('username')).value;
-    //var Firstname = (<HTMLInputElement>document.getElementById('Firstname')).value;
-    //var Lastname = (<HTMLInputElement>document.getElementById('Lastname')).value;
-    //var Email = (<HTMLInputElement>document.getElementById('Email')).value;
-    //var zip = (<HTMLInputElement>document.getElementById('zip')).value;
-    //var email = (<HTMLIonInputElement>document.getElementById('email')).value;
+    // var Firstname = (<HTMLInputElement>document.getElementById('Firstname')).value;
+    // var Lastname = (<HTMLInputElement>document.getElementById('Lastname')).value;
+    // var Email = (<HTMLInputElement>document.getElementById('Email')).value;
+    // var zip = (<HTMLInputElement>document.getElementById('zip')).value;
+    // var email = (<HTMLIonInputElement>document.getElementById('email')).value;
     var password = (<HTMLIonInputElement>document.getElementById('password')).value;
     
     var creds = [password, username];
     //alert(creds);
     //[key: string]: Product //login: string //dev: http://localhost:3000/users/login prod: http://ec2-3-86-230-37.compute-1.amazonaws.com/users/login
-    this.http.post<{[login: string]: any}>('http://ec2-3-86-230-37.compute-1.amazonaws.com/users/login', {username: username, password: password, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
+    this.http.post<{[login: string]: any}>('http://localhost:3000/users/login', {username: username, password: password, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
     console.log(res);  
     //var data = JSON.parse(res);
     console.log(res.Login);

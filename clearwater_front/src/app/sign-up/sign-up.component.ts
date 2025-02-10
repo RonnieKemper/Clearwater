@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
   createProfile(){
     console.log('create-profile function initiated');
     const headers = new HttpHeaders({
-      'myHeader': 'clearwater',
+      'myHeader': 'main',
       'Content-Type': 'application/json', //application/json //text/plain
       'Authorization': 'my-auth-token',
       'Access-Control-Allow-Origin': 'http://localhost:4200, http://localhost:3000',
@@ -36,11 +36,11 @@ export class SignUpComponent implements OnInit {
       observe: 'body', responseType: 'json'
     });
     console.log('http request initiated');
-    var firstname = (<HTMLInputElement>document.getElementById('Firstname')).value;
-    var lastname = (<HTMLInputElement>document.getElementById('Lastname')).value;
+    var firstname = (<HTMLInputElement>document.getElementById('firstname')).value;
+    var lastname = (<HTMLInputElement>document.getElementById('lastname')).value;
     var username = (<HTMLIonInputElement>document.getElementById('Username')).value;
     var email = (<HTMLInputElement>document.getElementById('Email')).value;
-    var phone = (<HTMLInputElement>document.getElementById('Phone')).value;
+    var phonenumber = (<HTMLInputElement>document.getElementById('Phone')).value;
     var password = (<HTMLIonInputElement>document.getElementById('Password')).value;
     var zip = (<HTMLInputElement>document.getElementById('Zip')).value;
     //var creds = [password, username];
@@ -50,19 +50,27 @@ export class SignUpComponent implements OnInit {
 
     //production: http://ec2-3-86-230-37.compute-1.amazonaws.com/users/signup
     //development: http://localhost:3000/users/signup
-    this.http.post<{[account_creation: string]: any}>('http://ec2-3-86-230-37.compute-1.amazonaws.com/users/signup', {firstname: firstname, lastname: lastname, username: username, email: email, phone: phone, password: password, zip: zip, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
-    console.log(res);  
+    this.http.post<{[account_creation: string]: any}>('http://localhost:3000/users/signup', {firstName: firstname, lastName: lastname, username: username, email: email, phonenumber: phonenumber, password: password, zip: zip, responseType: 'application/json'}, {headers: headers}).subscribe((res) => {
+    console.log(res.account_creation);  
     //var data = JSON.parse(res);
-    console.log(res.account_creation);
+    //console.log(res.account_creation);
     //console.log(JSON.parse(JSON.stringify(res)))
-    //let data = JSON.parse(JSON.stringify(res))
+    //let ress = JSON.parse(JSON.stringify(res))
     //console.log(data.Login)
     if (res.account_creation == 'success') {
-      window.location.href = '/profile';
+      window.location.href = '/welcome/login';
+      alert('Successfully created account');
     }
-    if (res.message == '401') {
-      console.log(res.message)
+
+    if (res.account_creation == 'failure') {
+      alert('Failed to create account');
     }
+    // if (res.message == '401') {
+    //   console.log(res.message)
+    // }
+    // if (res.message == '500') {
+    //   console.log(res.message)
+    // }
     });
   }
 

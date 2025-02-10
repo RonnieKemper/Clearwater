@@ -1,0 +1,13 @@
+{
+    "tables": {
+        "adminusers": {
+            "tableName": "adminusers",
+            "indexes": []
+        },
+        "cwCustomers": {
+            "tableName": "cwCustomers",
+            "indexes": []
+        }
+    },
+    "revision": 1
+}

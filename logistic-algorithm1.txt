@@ -1,0 +1,7 @@
+algorithm
+take schedule
+take location
+start at location from furthest point from home
+work towards home through each of the closest points
+
+https://chat.openai.com/?model=text-davinci-002-render-sha

@@ -1,0 +1,39 @@
+phase 3 Administrative infrastructure development
+create a new project named admin
+create angular project named "af" in admin
+create express project named "ab" in admin
+
+database named admin, replication of current user design for customer
+
+create an sql table for admin users and use seqeulize to model the table in ab
+
+create a login api endpoint named adminLogin in ab and use the sql table to authenticate users and respond to af with a JWT
+create a login function in af that will hit adminLogin 
+create a profile page in AF for administrative purposes
+
+create a function to generate a sql table named calender for the year to date, remove any date prior to the date it was created.
+
+create a sql table named availableTimes using each day as a column in format xx-xx-xxxx, and for each day, insert each hour 5am-10pm into the column.
+
+
+
+create a function named getAvailableTimes, which will fetch all available times from the availableTimes table.
+
+create a page named schedule-service
+this page should have a drop menu named service-type at the top, with 3 options: open, service, close, and assign it's value to the variable serviceType.
+slide menu named service-date.
+invoke getAvailableTimes and use the columns of the table to populate service-date, where each column is a button 
+each button has 2 labels, the abbreviation of the day in english, and the numeric date within the month. 
+while button selected, variable serviceDate = buttondatevalue
+
+
+create a function named scheduleJob 
+serviceType, serviceDate
+
+create a sql table named jobs with values:
+jobID, date, time, address, service, transaction.
+
+profile dashboard functions:
+function named getJobs which will make an http request to an api endpoint named getJobs which will fetch all from jobs table
+
+make these files downloadable 

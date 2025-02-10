@@ -1,0 +1,24 @@
+"<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>models.cwCustomers.findOrCreate(...).spread is not a function</h1>
+<h2></h2>
+<pre>TypeError: models.cwCustomers.findOrCreate(...).spread is not a function
+    at C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\routes\users.js:31:6
+    at Layer.handle [as handle_request] (C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\ronsp\OneDrive\Desktop\ID\DEV\OPS\Clearwater\Clearwater\clearwater-back\node_modules\express\lib\router\index.js:47:12)</pre>
+
+  </body>
+</html>
+"

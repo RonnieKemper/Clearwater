@@ -1,0 +1,52 @@
+
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+
+#background-image-container{
+  
+  display: flex;
+  height: 50%;
+  width: 100%;
+}
+
+#background-image{
+  display: flex;
+  
+  width: 100%
+}
+
+
+#welcome-form{
+  height: 50%;
+}
+#welcome-form-text{
+
+  display: flex;
+  justify-content: center;
+  font-family: consolas;
+}
+
+#welcome-form-text2{
+  display: flex;
+  justify-content: center;
+  font-family: consolas;
+  margin:32px;
+}
+
+#new-customer {
+  display: flex;
+  justify-content: center;
+  margin: 3%;
+}
+#current-customer {
+  display: flex;
+  justify-content: center;
+  margin: 3%;
+  
+}
+
+
