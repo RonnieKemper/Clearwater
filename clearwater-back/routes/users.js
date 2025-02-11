@@ -179,6 +179,24 @@ router.get('/profile/:id', authService.verifyUser, function(req, res, next) {
     });
   }
 });
+router.post('/book-appointment', (req, res, next) => {
+  // Destructuring the data received in the request body
+  const { time, day, month, year } = req.body;
+
+  // Check if all necessary fields (time, day, month, year) are provided
+  if (!time || !day || !month || !year) {
+    // If any field is missing, return a 400 status with an error message
+    return res.status(400).send({ message: 'Invalid data, all fields are required.' });
+  }
+
+  // Format the response message with the provided data
+  const appointmentMessage = `Appointment booked for ${time} on ${day} ${month}, ${year}`;
+
+  // Send the response with status 200 and the formatted appointment message
+  return res.status(200).send({ message: appointmentMessage });
+});
+
+
 router.get('musician-roster')
 router.get('create-band')
 router.get('create-project')
@@ -189,5 +207,7 @@ router.get('create-project')
 //     res.redirect('profile/' + req.user.UserId);
 // });
 // module.exports = router;
+// Route to book an appointment
+
 
 module.exports = router;

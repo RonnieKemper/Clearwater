@@ -39,29 +39,32 @@
       </ion-toolbar>
     </ion-header>
   
-
-        <div *ngIf="selectedDay" class="time-table">
-          <h3>Available Times for {{ selectedDay.dayName }} {{ selectedDay.day }}</h3>
-      
-          <ion-grid id="ion-grid">
-            <ion-row *ngFor="let row of getRows(times)" class="time-row">
-              <ion-col *ngFor="let time of row" size="2">
-                <ion-button fill="solid" color="primary" (click)="bookTime(time)">
-                  {{ time }}
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
+    <div *ngIf="selectedDay" class="time-table">
+      <h3>Available Times for {{ selectedDay.dayName }} {{ selectedDay.day }}</h3>
   
-  <ion-footer>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button routerLink="/profile">Home</ion-button>
-        <ion-button routerLink="/schedule">Schedule</ion-button>
-        <ion-button routerLink="/promotions">Promotions</ion-button>
-        <ion-button routerLink="/refer">Refer</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-footer>
+      <ion-grid id="ion-grid">
+        <ion-row *ngFor="let row of getRows(times)" class="time-row">
+          <ion-col *ngFor="let time of row" size="2">
+            <ion-button fill="solid" color="primary" (click)="selectTime(time)">
+              {{ time }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  
+    <!-- Book Appointment Button -->
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button 
+            [disabled]="!selectedTime" 
+            expand="full" 
+            (click)="bookAppointment()">
+            Book Appointment
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-content>
   

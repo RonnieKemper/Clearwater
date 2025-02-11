@@ -15,8 +15,9 @@ export class ScheduleComponent implements OnInit {
   selectedDay: any = null; // Selected day object to highlight
   times: string[] = []; // Array to hold time slots for 6 AM - 8 PM
   timesPerRow: number = 6;  // Number of time buttons per row
+  selectedTime: string = ''; // Selected time for booking
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private http: HttpClient) {}
 
   ngOnInit() {
     // Initialize with the current month's data
@@ -108,8 +109,8 @@ export class ScheduleComponent implements OnInit {
     return this.calendar.slice(this.currentDayIndex, this.currentDayIndex + 4);
   }
 
-   // Function to generate the time slots for 6 AM to 8 PM in 15-minute increments
-   generateTimes(): void {
+  // Function to generate the time slots for 6 AM to 8 PM in 15-minute increments
+  generateTimes(): void {
     const times = [];
     const startHour = 6;
     const endHour = 18;
@@ -124,6 +125,7 @@ export class ScheduleComponent implements OnInit {
 
     this.times = times;
   }
+
   getRows(times: string[]): string[][] {
     const rows = [];
     for (let i = 0; i < times.length; i += this.timesPerRow) {
@@ -131,18 +133,42 @@ export class ScheduleComponent implements OnInit {
     }
     return rows;
   }
+
   // Function to select a day and highlight it
   selectDay(day: any): void {
     this.selectedDay = day;
+    this.selectedTime = ''; // Reset selected time when a new day is selected
   }
 
   // Function to check if the day is selected
   isDaySelected(day: any): boolean {
     return this.selectedDay === day;
   }
-  bookTime(time: string): void {
-    // Logic to handle booking the selected time
-    console.log(`Booked time: ${time}`);
+
+  // Function to select a time and store the selected time for booking
+  selectTime(time: string): void {
+    this.selectedTime = time; // Store the selected time
+  }
+
+  // Function to book the appointment
+  bookAppointment(): void {
+    if (this.selectedTime && this.selectedDay) {
+      const appointmentData = {
+        time: this.selectedTime,
+        day: this.selectedDay.day,
+        month: this.currentMonthName,
+        year: this.currentYear
+      };
+
+      // Call your backend to book the appointment (Assuming backend is running)
+      console.log(appointmentData)
+      this.http.post('http://localhost:3000/users/book-appointment', appointmentData)
+        .subscribe(response => {
+          alert('Appointment booked');
+        }, error => {
+          console.error('Booking error', error);
+          alert('There was an error booking your appointment.');
+        });
+    }
   }
 }
-

@@ -7,10 +7,12 @@ var logger = require('morgan');
 var models = require('./models'); //<--- Add this line
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+//var ScheduleRouter = require('./routes/Schedule');
 const https = require('https');
 const { User } = require('./models'); // Import the User model
 const cors = require("cors");
 const redirectSSL = require('redirect-ssl');
+//const scheduleRoutes = require('./routes/Schedule');
 
 var app = express();
 //view engine setup
@@ -29,6 +31,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
+// Import routes
+// const scheduleRoutes = require('./routes/Schedule'); // Adjust path as needed
+//app.use('.routes/Schedule', ScheduleRouter);
+
 //app.use(redirectSSL);
 
 app.enable('trust proxy')
