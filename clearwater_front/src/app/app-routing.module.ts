@@ -8,7 +8,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { ReferComponent } from './refer/refer.component';
 import { CreateProfileComponent } from './profile/create-profile.component';
-import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 
 const routes: Routes = [
@@ -50,10 +50,13 @@ const routes: Routes = [
     path: 'refer',
     component: ReferComponent,
   },
-  {
-    path: 'welcome/sign-up/create-profile/email-confirmation',
-    component: EmailConfirmationComponent,
-  },
+  { path: 'verify-email',
+    component: VerifyEmailComponent },
+  { path: '**', redirectTo: '/' },
+  // {
+  //   path: 'welcome/sign-up/create-profile/email-confirmation',
+  //   component: EmailConfirmationComponent,
+  // },
 
 
 

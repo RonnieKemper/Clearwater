@@ -59,7 +59,14 @@ var cwCustomers = sequelize.define(
       allowNull: true
     },
     zip: DataTypes.STRING,
-      
+    IsVerified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false, // Default to false for new users
+    },
+    VerificationToken: {
+      type: DataTypes.STRING,
+      allowNull: true, // Initially null until the user verifies
+    },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
     Admin: DataTypes.BOOLEAN

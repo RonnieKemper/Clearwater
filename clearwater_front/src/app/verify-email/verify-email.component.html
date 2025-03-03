@@ -1,0 +1,15 @@
+<p>
+  please verify your email
+</p>
+
+
+
+<div *ngIf="message">{{ message }}</div>
+
+<!-- Display errors if any exist -->
+<div *ngIf="errors.length > 0" class="error-container">
+  <h3>Errors:</h3>
+  <ul>
+    <li *ngFor="let error of errors">{{ error }}</li>
+  </ul>
+</div>

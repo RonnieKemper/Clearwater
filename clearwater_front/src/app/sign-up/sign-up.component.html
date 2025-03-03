@@ -80,9 +80,11 @@
             id="Email"
             shape="round"
             fill="outline"
+            (ionBlur)="onEmailBlur($event)"
           ></ion-input>
         </ion-item>
       </ion-row>
+      
       <ion-row>
         <ion-item class="loginFields">
           <ion-input

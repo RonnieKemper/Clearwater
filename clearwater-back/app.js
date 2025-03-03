@@ -20,6 +20,10 @@ var app = express();
 // var server = app.listen(app.get('port'), function() {
 //   console.log('Express server listening on port ' + server.address().port);
 // });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +34,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+
+//app.use(cors());
+// Update the CORS configuration
+app.use(
+  cors({
+    origin: ['*', 'http://email.com', 'http://localhost:4200', 'http://71.72.230.163:4200', 'http://192.168.1.231:4200', 'http://71.72.230.163:4200/verify-email'],
+    methods: ['GET', 'POST'],
+    credentials: true, // Allow cookies to be sent
+  })
+);
+
 // Import routes
 // const scheduleRoutes = require('./routes/Schedule'); // Adjust path as needed
 //app.use('.routes/Schedule', ScheduleRouter);

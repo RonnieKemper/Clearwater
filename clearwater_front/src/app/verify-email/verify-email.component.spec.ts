@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { EmailConfirmationComponent } from './email-confirmation.component';
+import { VerifyEmailComponent } from './verify-email.component';
 
-describe('EmailConfirmationComponent', () => {
-  let component: EmailConfirmationComponent;
-  let fixture: ComponentFixture<EmailConfirmationComponent>;
+describe('VerifyEmailComponent', () => {
+  let component: VerifyEmailComponent;
+  let fixture: ComponentFixture<VerifyEmailComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmailConfirmationComponent ],
+      declarations: [ VerifyEmailComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EmailConfirmationComponent);
+    fixture = TestBed.createComponent(VerifyEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
